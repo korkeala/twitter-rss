@@ -1,4 +1,4 @@
-(defproject twitter-rss "0.1.0-SNAPSHOT"
+(defproject twitter-rss "0.1.0"
   :description "Service to transform twitter feeds to RSS feed."
   :url "https://github.com/korkeala/twitter-rss"
   :license {:name "Eclipse Public License"
