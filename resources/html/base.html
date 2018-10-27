@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to twitter-rss feed</title>
+
+    <!-- styles -->
+    {% style "/assets/bootstrap/css/bootstrap.min.css" %}
+    {% style "/css/screen.css" %}
+  </head>
+  <body>
+      <!-- navbar -->
+
+    <div class="container">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <!-- scripts -->
+    
+    {% block page-scripts %}
+    {% endblock %}
+  </body>
+</html>

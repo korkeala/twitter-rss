@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-sm-12">
+
+      <h1>Twitter feed to rss</h1>
+          <form name="search handler" method="get" action="/feed">
+              <div class="form-group">
+              <label for="twitter-handler">Twitter handler</label>
+              <input type="text" size="100" name="twitter-handler" >
+              </div>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              
+          </form>
+  </div>
+</div>
+{% endblock %}
