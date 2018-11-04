@@ -56,13 +56,17 @@
   (html/select resource
                [:li.js-stream-item :div.tweet :div.content]))
 
-(defn twitter-link
+(defn twitter-handler-uri
   "Returns link to handlers page"
   [handler]
   (str TWITTER_URL  "/" handler))
 
+(defn twitter-search-uri
+  "Returns link to handlers page"
+  [term]
+  (str TWITTER_URL  "/search?q=" term "&src=typd"))
+
 (defn fetch-twitter-feed
-  "Fetches twitter feed for handler, Enlive html-resource."
-  [handler]
-  (html/html-resource (java.net.URL.
-                       (str (twitter-link handler)))))
+  "Fetches link as an Enlive html-resource."
+  [link]
+  (html/html-resource (java.net.URL. link)))

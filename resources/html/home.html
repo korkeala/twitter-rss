@@ -3,7 +3,8 @@
 <div class="row">
   <div class="col-sm-12">
 
-      <h1>Twitter feed to rss</h1>
+      <h1>Twitter to rss service</h1>
+      <h2>Transform twitter feed to rss feed</h2>
           <form name="search handler" method="get" action="/feed">
               <div class="form-group">
               <label for="twitter-handler">Twitter handler</label>
@@ -12,6 +13,17 @@
               <button type="submit" name="submit" class="btn btn-primary">Submit</button>
               
           </form>
+
+          <h2>Transform twitter search to rss feed</h2>
+          <form name="search handler" method="get" action="/search">
+              <div class="form-group">
+                  <label for="search-term">Enter search term</label>
+                  <input type="text" size="100" name="search-term" >
+              </div>
+              <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+              
+          </form>
+ 
   </div>
 </div>
 {% endblock %}

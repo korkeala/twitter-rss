@@ -21,6 +21,14 @@
     (let [response (app (request :get "/"))]
       (is (= 200 (:status response)))))
 
+  (testing "search route without parameters"
+    (let [response (app (request :get "/search"))]
+      (is (= 400 (:status response)))))
+
+  (testing "feed route without parameters"
+    (let [response (app (request :get "/feed"))]
+      (is (= 400 (:status response)))))
+
   (testing "not-found route"
     (let [response (app (request :get "/invalid"))]
       (is (= 404 (:status response))))))
