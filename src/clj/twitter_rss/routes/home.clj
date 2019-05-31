@@ -4,6 +4,7 @@
             [twitter-rss.twitter :as tw]
             [clojure.java.io :as io]
             [clojure.tools.logging :as log]
+            [clojure.spec.alpha :as s]
             [twitter-rss.middleware :as middleware]
             [clj-rss.core :as rss]
             [clojure.string :as string]
@@ -26,6 +27,9 @@
           :pubDate pub-date
           :description description}))
        tweets))
+
+(def search-regex #"^[a-zA-Z0-9._-]{4,30}$")
+(s/def :twitter/search-string (s/and string? #(re-matches search-regex %)))
 
 (defn sanitize
   "Removes characters not alphanumeric and then reduces
@@ -78,9 +82,9 @@
 (defn construct-feed-response
   "Constructs response for twitter feed"
   [twitter-handler]
-  (if (zero? (count twitter-handler))
+  (if (not (s/valid? :twitter/search-string twitter-handler))
     (layout/error-page {:status 400
-                        :title "Twitter handler cant be empty"})
+                        :title "Twitter handler is not valid"})
     (let [sanitized (sanitize twitter-handler)]
       (construct-feed
        (str "Twitter feed as rss for: " sanitized)
@@ -89,10 +93,9 @@
 (defn construct-search-response
   "Constructs response from twitter search"
   [search-term]
-  (if (or (zero? (count search-term))
-          (zero? (count (sanitize search-term))))
+  (if (not (s/valid? :twitter/search-string search-term))
     (layout/error-page {:status 400
-                        :title "Search term cant be empty"})
+                        :title "Search term is not valid"})
     (let [sanitized (sanitize search-term)]
       (construct-feed
        (str "Twitter search results as rss for term: " sanitized)
